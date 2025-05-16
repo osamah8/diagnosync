@@ -14,7 +14,7 @@ export const journeyData: JourneyItem[] = [
     {
         date: 'May 2024',
         title: 'Radiology Interview Prep.',
-        description: 'Our first product: a personal take on tackling radiology ST1 interviews. A clean site with honest guidance — plus a lightweight, high-margin question bank that undercuts top-heavy competitors.',
+        description: 'Our first product: a personal take on tackling Clinical Radiology interviews. A clean site with honest guidance — plus a lightweight Question Bank that undercuts top-heavy competitors.',
         href: 'https://radiologyinterviewprep.com'
     }
 ];
