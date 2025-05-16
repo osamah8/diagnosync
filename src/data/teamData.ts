@@ -10,7 +10,7 @@ export interface TeamMember {
 export const teamData: TeamMember[] = [
   {
     name: 'Dr Osamah Ahmad',
-    role: 'Founder & Doctor',
+    role: 'Founder',
     image: osamah,
     bio: 'Fluent in medicine and coding. Passionate about health tech. and workflow optimisation.'
   }
