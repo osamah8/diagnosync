@@ -1,26 +1,31 @@
-import { Center, ChakraProvider, createSystem, defaultConfig, defineConfig, VStack, } from '@chakra-ui/react'
+import { Center, ChakraProvider, createSystem, defaultConfig, defineConfig, Heading, Text, VStack, } from '@chakra-ui/react'
 import './App.css'
-import HeroSection from './components/HeroSection'
+import HeroSection, { Diagnosync } from './components/HeroSection'
 import { useColorMode } from './components/ui/color-mode'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type ElementType } from 'react'
 import OurJourney from './components/OurJourney'
 import MeetTheTeam from './components/MeetTheTeam'
 import padding from './components/ui/padding'
 import LetsTalk from './components/LetsTalk'
+import { Route, Routes, useNavigate } from 'react-router'
+import { pageData, type Paragraph } from './data/pageData'
+import h2Size from './components/ui/h2Size'
+import gap from './components/ui/gap'
+import h3Size from './components/ui/h3size'
 
 const config = defineConfig({
   theme: {
     tokens: {
       colors: {},
       fonts: {
-        body: { value: "Arial, Helvetica, sans-serif" },
-        heading: { value: "Arial, Helvetica, sans-serif" }
+        body: { value: 'Arial, Helvetica, sans-serif' },
+        heading: { value: 'Arial, Helvetica, sans-serif' }
       },
       letterSpacings: {
-        default: { value: "5em" },
+        default: { value: '5em' },
       }
-    },
-  },
+    }
+  }
 })
 
 const system = createSystem(defaultConfig, config)
@@ -43,21 +48,82 @@ function App() {
 
   const ourJourneyRef = useRef<HTMLDivElement>(null);
 
+  const footer = <Center
+    as="footer"
+    color="fg.muted"
+    fontSize={["sm", "md"]}>
+    &copy; {new Date().getFullYear()} DIAGNOSYNC LIMITED
+  </Center>;
+
+  const navigate = useNavigate();
+
+  const renderParagraphs = (paragraphs: Paragraph[], currentLevel: number[] = []) =>
+    paragraphs.map((paragraph, index) => {
+      const nextLevel = index + 1;
+      const displayLevel = `${currentLevel.map(level => level + '.')}${nextLevel}. `;
+
+      return (
+        <VStack alignItems="left">
+          {paragraph.heading &&
+            <Heading
+              as={`h${3 + (currentLevel.length)}` as ElementType}
+              size={currentLevel.length === 0 ? h3Size : undefined}>
+              {displayLevel}{paragraph.heading}
+            </Heading>}
+          {paragraph.body &&
+            <Text>
+              {!paragraph.heading && displayLevel}
+              {paragraph.body}
+            </Text>}
+          {paragraph.paragraphs && renderParagraphs(paragraph.paragraphs, [...currentLevel, nextLevel])}
+        </VStack>
+      );
+    });
+
   return (
     <ChakraProvider value={system}>
-      <HeroSection onNext={() => ourJourneyRef.current?.scrollIntoView({ behavior: "smooth" })} />
-      <VStack
-        ref={ourJourneyRef}
-        alignItems="left"
-        p={padding}
-        gap={padding}>
-        <OurJourney />
-        <MeetTheTeam />
-        <LetsTalk />
-        <Center as="footer" color="fg.muted" fontSize={["sm", "md"]}>
-          &copy; {new Date().getFullYear()} DIAGNOSYNC LIMITED
-        </Center>
-      </VStack>
+      <Routes>
+        <Route
+          index
+          element={
+            <>
+              <HeroSection onNext={() => ourJourneyRef.current?.scrollIntoView({ behavior: "smooth" })} />
+              <VStack
+                ref={ourJourneyRef}
+                alignItems="left"
+                p={padding}
+                gap={padding}>
+                <OurJourney />
+                <MeetTheTeam />
+                <LetsTalk />
+                {footer}
+              </VStack>
+            </>
+          } />
+        {pageData.map(page =>
+          <Route
+            path={page.path}
+            element={
+              <>
+                <title>{`${page.title} | Diagnosync`}</title>
+                <meta name="description"
+                  content={page.description} />
+                <VStack
+                  alignItems="left"
+                  p={padding}
+                  gap={padding}>
+                  <Diagnosync onClick={() => navigate('/', { state: true })} />
+                  <VStack
+                    alignItems="left"
+                    gap={gap}>
+                    <Heading as="h2" size={h2Size}>{page.title}</Heading>
+                    {renderParagraphs(page.paragraphs)}
+                  </VStack>
+                  {footer}
+                </VStack>
+              </>
+            } />)}
+      </Routes>
     </ChakraProvider>
   )
 }

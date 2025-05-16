@@ -27,7 +27,7 @@ const MeetTheTeam = () => {
                     <VStack
                         alignItems="left"
                         flex="1">
-                        <HStack gap={gap}>
+                        <HStack gap={[4, gap]}>
                             <AvatarRoot
                                 size="2xl"
                                 display={["inline-block", "none"]}>
