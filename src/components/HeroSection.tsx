@@ -5,7 +5,16 @@ import type { FC } from "react";
 import ImageIcon from "./ui/ImageIcon";
 import padding from "./ui/padding";
 
-const HeroSection: FC<{ onNext?: Function }> = ({ onNext }) => {
+export const Diagnosync: FC<{ onClick?: Function }> = ({ onClick }) =>
+    <HStack
+        fontSize={["lg", "xl", "4xl"]}
+        cursor="pointer"
+        pointerEvents={onClick ? undefined : 'none'}
+        onClick={onClick ? () => onClick() : undefined}>
+        <ImageIcon src={diagnosyncIcon} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
+    </HStack>;
+
+export const HeroSection: FC<{ onNext?: Function }> = ({ onNext }) => {
 
     return (
         <HStack
@@ -15,14 +24,9 @@ const HeroSection: FC<{ onNext?: Function }> = ({ onNext }) => {
                 as="header"
                 alignItems="left"
                 maxW={["100svw", "100svw", "75svw"]}>
-                <HStack
-                    fontSize={["lg", "xl", "4xl"]}
-                    pb={padding}
-                    pointerEvents="none">
-                    <ImageIcon src={diagnosyncIcon} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
-                </HStack>
-                <Heading size={["4xl", "5xl", "7xl"]}>
-                    We Make Efficient Healthcare Solutions <TbCircleArrowDownFilled
+                <Diagnosync />
+                <Heading pt={padding} size={["4xl", "5xl", "7xl"]}>
+                    We Deliver Efficient Healthcare Solutions <TbCircleArrowDownFilled
                         style={{ display: 'inline-block' }}
                         cursor={onNext ? "pointer" : "default"}
                         onClick={onNext ? () => onNext() : () => { }} />
