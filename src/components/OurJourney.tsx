@@ -47,7 +47,8 @@ const OurJourney = () => {
                             ? <Link
                                 href={journeyItem.href}
                                 target="_blank"
-                                rel="noopener noreferrer">
+                                rel="noopener noreferrer"
+                                width="fit-content">
                                 {title}
                             </Link>
                             : title}
