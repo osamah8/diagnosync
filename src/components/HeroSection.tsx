@@ -1,43 +1,31 @@
 import { Heading, HStack, VStack } from "@chakra-ui/react"
 import diagnosyncIcon from "../assets/diagnosync.png"
-import { useColorModeValue } from "./ui/color-mode";
 import { TbCircleArrowDownFilled } from "react-icons/tb";
 import type { FC } from "react";
+import ImageIcon from "./ui/ImageIcon";
+import padding from "./ui/padding";
 
-const HeroSection: FC<{ next?: Function }> = ({ next }) => {
-    const baseLogoStyle = {
-        width: '.875em',
-        height: '.875em',
-        verticalAlign: 'middle'
-    }
-
-    const logoStyle = useColorModeValue(
-        {
-            ...baseLogoStyle,
-            background: `url("${diagnosyncIcon}") no-repeat center`,
-            backgroundSize: 'contain'
-        },
-        {
-            ...baseLogoStyle,
-            backgroundColor: 'currentColor',
-            WebkitMaskImage: `url("${diagnosyncIcon}")`,
-            maskImage: `url("${diagnosyncIcon}")`,
-            maskRepeat: 'no-repeat',
-            maskSize: 'contain'
-        }
-    );
+const HeroSection: FC<{ onNext?: Function }> = ({ onNext }) => {
 
     return (
-        <HStack h="100svh" p="24">
-            <VStack as="header" alignItems="left" maxW="75svw">
-                <HStack fontSize="3xl" mb="24">
-                    <i style={logoStyle} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
+        <HStack
+            h="100svh"
+            p={padding}>
+            <VStack
+                as="header"
+                alignItems="left"
+                maxW={["100svw", "100svw", "75svw"]}>
+                <HStack
+                    fontSize={["lg", "xl", "4xl"]}
+                    pb={padding}
+                    pointerEvents="none">
+                    <ImageIcon src={diagnosyncIcon} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
                 </HStack>
-                <Heading size="7xl">
+                <Heading size={["4xl", "5xl", "7xl"]}>
                     We Make Efficient Healthcare Solutions <TbCircleArrowDownFilled
                         style={{ display: 'inline-block' }}
-                        cursor={next ? "pointer" : "default"}
-                        onClick={next ? () => next() : () => { }} />
+                        cursor={onNext ? "pointer" : "default"}
+                        onClick={onNext ? () => onNext() : () => { }} />
                 </Heading>
             </VStack>
         </HStack>

@@ -1,8 +1,12 @@
-import { ChakraProvider, createSystem, defaultConfig, defineConfig, } from '@chakra-ui/react'
+import { Center, ChakraProvider, createSystem, defaultConfig, defineConfig, VStack, } from '@chakra-ui/react'
 import './App.css'
 import HeroSection from './components/HeroSection'
 import { useColorMode } from './components/ui/color-mode'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import OurJourney from './components/OurJourney'
+import MeetTheTeam from './components/MeetTheTeam'
+import padding from './components/ui/padding'
+import LetsTalk from './components/LetsTalk'
 
 const config = defineConfig({
   theme: {
@@ -37,9 +41,23 @@ function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   });
 
+  const ourJourneyRef = useRef<HTMLDivElement>(null);
+
   return (
     <ChakraProvider value={system}>
-      <HeroSection />
+      <HeroSection onNext={() => ourJourneyRef.current?.scrollIntoView({ behavior: "smooth" })} />
+      <VStack
+        ref={ourJourneyRef}
+        alignItems="left"
+        p={padding}
+        gap={padding}>
+        <OurJourney />
+        <MeetTheTeam />
+        <LetsTalk />
+        <Center as="footer" color="fg.muted" fontSize={["sm", "md"]}>
+          &copy; {new Date().getFullYear()} DIAGNOSYNC LIMITED
+        </Center>
+      </VStack>
     </ChakraProvider>
   )
 }
