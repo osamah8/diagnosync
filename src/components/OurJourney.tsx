@@ -22,13 +22,12 @@ const OurJourney = () => {
                     as="h3"
                     fontSize={h3Size}
                     fontWeight="bold">
-                    {journeyItem.title}
-                    <Text
+                    {journeyItem.title} <Text
                         as="h3"
                         fontSize="inherit"
                         fontWeight="normal"
                         display={["inline-block", "none"]}>
-                        &nbsp;({journeyItem.date})
+                        ({journeyItem.date})
                     </Text> {journeyItem.href && <TbCircleArrowRightFilled style={{ display: 'inline-block' }} />}
                 </Text>;
 
