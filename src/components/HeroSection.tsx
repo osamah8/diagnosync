@@ -1,5 +1,5 @@
 import { Heading, HStack, VStack } from "@chakra-ui/react"
-import diagnosyncIcon from "../assets/diagnosync.png"
+import diagnosyncLogo from "../assets/diagnosync-logo.png"
 import { TbCircleArrowDownFilled } from "react-icons/tb";
 import type { FC } from "react";
 import ImageIcon from "./ui/ImageIcon";
@@ -11,7 +11,7 @@ export const Diagnosync: FC<{ onClick?: Function }> = ({ onClick }) =>
         cursor="pointer"
         pointerEvents={onClick ? undefined : 'none'}
         onClick={onClick ? () => onClick() : undefined}>
-        <ImageIcon src={diagnosyncIcon} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
+        <ImageIcon src={diagnosyncLogo} /> <Heading as="h1" fontSize='inherit' letterSpacing="tighter">Diagnosync</Heading>
     </HStack>;
 
 export const HeroSection: FC<{ onNext?: Function }> = ({ onNext }) => {

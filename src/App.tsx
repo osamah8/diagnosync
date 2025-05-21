@@ -50,7 +50,9 @@ function App() {
   const footer = <Center
     as="footer"
     color="fg.muted"
-    fontSize={["sm", "md"]}>
+    fontSize={["sm", "md"]}
+    pb={padding}
+    pt={padding}>
     &copy; {new Date().getUTCFullYear()} DIAGNOSYNC LIMITED
   </Center>;
 
@@ -91,7 +93,7 @@ function App() {
           index
           element={
             <>
-              <HeroSection onNext={() => ourJourneyRef.current?.scrollIntoView({ behavior: "smooth" })} />
+              <HeroSection onNext={() => ourJourneyRef.current?.scrollIntoView({ behavior: 'smooth' })} />
               <VStack
                 ref={ourJourneyRef}
                 alignItems="left"
