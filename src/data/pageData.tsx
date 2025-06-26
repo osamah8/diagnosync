@@ -66,7 +66,7 @@ export const pageData: Page[] = [
       },
       {
         heading: 'Last Updated',
-        body: '16 May 2025'
+        body: '26 June 2025'
       }
     ]
   },
@@ -211,7 +211,7 @@ export const pageData: Page[] = [
       },
       {
         heading: 'Last Updated',
-        body: '16 May 2025'
+        body: '26 June 2025'
       }
     ]
   }
