@@ -46,7 +46,7 @@ export const pageData: Page[] = [
       },
       {
         heading: 'Privacy',
-        body: <>Your privacy is important to us. Please refer to our {<Link variant="underline" href="./privacy">Privacy Policy</Link>} for details on how we collect, use, and safeguard your personal data.</>
+        body: <>Your privacy is important to us. Please refer to our {<Link variant="underline" href="./privacy-notice">Privacy Notice</Link>} for details on how we collect, use, and safeguard your personal data.</>
       },
       {
         heading: 'Limitation of Liability',
@@ -83,7 +83,7 @@ export const pageData: Page[] = [
         paragraphs: [
           {
             heading: 'Email',
-            body: <Link variant="underline" href="mailto:hello@diagnosync.com?subject=Privacy%20Policy">hello@diagnosync.com</Link>
+            body: <Link variant="underline" href="mailto:privacy@diagnosync.com?subject=Privacy%Notice">privacy@diagnosync.com</Link>
           }
         ]
       },

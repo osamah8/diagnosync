@@ -51,7 +51,6 @@ function App() {
     as="footer"
     color="fg.muted"
     fontSize={["sm", "md"]}
-    pb={padding}
     pt={padding}>
     &copy; {new Date().getUTCFullYear()} DIAGNOSYNC LIMITED
   </Center>;

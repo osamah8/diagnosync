@@ -4,10 +4,11 @@ import { TbCircleArrowDownFilled } from "react-icons/tb";
 import type { FC } from "react";
 import ImageIcon from "./ui/ImageIcon";
 import padding from "./ui/padding";
+import h3Size from "./ui/h3size";
 
 export const Diagnosync: FC<{ onClick?: Function }> = ({ onClick }) =>
     <HStack
-        fontSize={["lg", "xl", "4xl"]}
+        fontSize={h3Size}
         cursor="pointer"
         pointerEvents={onClick ? undefined : 'none'}
         onClick={onClick ? () => onClick() : undefined}>
